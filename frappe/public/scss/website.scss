@@ -1,6 +1,7 @@
 @import "variables";
 @import "frappe/public/css/font-awesome";
-@import "~bootstrap/scss/bootstrap";
+// DFP changed route from "~bootstrap/scss/bootstrap" to relative path to have VSC resolve working;
+@import "../node_modules/bootstrap/scss/bootstrap";
 @import "multilevel-dropdown";
 @import "website-image";
 

@@ -68,12 +68,14 @@ function get_rollup_options_for_js(output_file, input_files) {
 		production && terser()
 	];
 
+	console.log('DFP:01: added vue to external to avoid js errors with vue libraries when compiling')
 	return {
 		inputOptions: {
 			input: input_files,
 			plugins: plugins,
 			context: 'window',
-			external: ['jquery'],
+			// DFP:01: Added vue to "external",
+			external: ['jquery', 'vue'],
 			onwarn({ code, message, loc, frame }) {
 				// skip warnings
 				if (['EVAL', 'SOURCEMAP_BROKEN', 'NAMESPACE_CONFLICT'].includes(code)) return;
@@ -99,7 +101,9 @@ function get_rollup_options_for_js(output_file, input_files) {
 			format: 'iife',
 			name: 'Rollup',
 			globals: {
-				'jquery': 'window.jQuery'
+				'jquery': 'window.jQuery',
+				// DFP:01: Added below line
+				'vue': 'window.Vue',
 			},
 			sourcemap: true
 		}
