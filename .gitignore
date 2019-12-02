@@ -189,7 +189,3 @@ typings/
 # cypress
 cypress/screenshots
 cypress/videos
-
-# DFP
-yarn.lock
-
