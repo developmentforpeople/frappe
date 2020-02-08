@@ -478,7 +478,6 @@ frappe.Application = Class.extend({
 		// 	"version": "12.2.0"
 		// }];
 
-		// Iterate over changelog
 		var change_log_dialog = frappe.msgprint({
 			message: frappe.render_template("change_log", {"change_log": change_log}),
 			title: __("Updated To New Version 🎉"),
