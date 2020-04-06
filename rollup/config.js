@@ -11,6 +11,7 @@ const buble = require('rollup-plugin-buble');
 const { terser } = require('rollup-plugin-terser');
 const vue = require('rollup-plugin-vue');
 const frappe_html = require('./frappe-html-plugin');
+const json = require('@rollup/plugin-json');
 
 const production = process.env.FRAPPE_ENV === 'production';
 
@@ -50,6 +51,8 @@ function get_rollup_options_for_js(output_file, input_files) {
 		ignore_css(),
 		// .vue -> .js
 		vue.default(),
+		// import json
+		json(),
 		// ES6 -> ES5
 		buble({
 			objectAssign: 'Object.assign',
