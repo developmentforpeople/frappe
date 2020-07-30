@@ -220,12 +220,14 @@ def apply(doc, method=None, doctype=None, name=None):
 				continue
 
 			if not new_apply:
-				# only reopen if close condition is not satisfied
 				if not assignment_rule.safe_eval('close_condition', doc):
-					reopen =  reopen_closed_assignment(doc)
+					reopen = reopen_closed_assignment(doc)
 					if reopen:
 						break
-			assignment_rule.close_assignments(doc)
+			close = assignment_rule.apply_close(doc, assignments)
+			if close:
+				break
+
 
 def get_assignment_rules():
 	return [d.document_type for d in frappe.db.get_all('Assignment Rule', fields=['document_type'], filters=dict(disabled = 0))]
