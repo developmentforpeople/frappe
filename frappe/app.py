@@ -53,6 +53,10 @@ def application(request):
 
 		init_request(request)
 
+		# DFP:01: Added below 2 lines
+		from aef_site2.tools import app_init_request_overrides
+		app_init_request_overrides()
+
 		frappe.recorder.record()
 		frappe.monitor.start()
 		frappe.rate_limiter.apply()
