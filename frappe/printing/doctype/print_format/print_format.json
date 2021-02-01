@@ -20,6 +20,7 @@
   "align_labels_right",
   "show_section_headings",
   "line_breaks",
+  "absolute_value",
   "column_break_11",
   "default_print_language",
   "font",
@@ -137,6 +138,12 @@
    "label": "Show Line Breaks after Sections"
   },
   {
+   "default": "0",
+   "fieldname": "absolute_value",
+   "fieldtype": "Check",
+   "label": "Show Absolute Values"
+  },
+  {
    "fieldname": "column_break_11",
    "fieldtype": "Column Break"
   },
@@ -162,8 +169,7 @@
   {
    "fieldname": "css",
    "fieldtype": "Code",
-   "label": "Custom CSS",
-   "options": "CSS"
+   "label": "Custom CSS"
   },
   {
    "fieldname": "custom_html_help",
@@ -195,12 +201,20 @@
    "fieldtype": "Check",
    "hidden": 1,
    "label": "Print Format Builder"
+  },
+  {
+   "default": "0",
+   "depends_on": "doc_type",
+   "description": "If checked, negative numeric values of Currency, Quantity or Count would be shown as positive",
+   "fieldname": "absolute_value",
+   "fieldtype": "Check",
+   "label": "Show Absolute Values"
   }
  ],
  "icon": "fa fa-print",
  "idx": 1,
- "modified": "2019-11-28 12:40:40.364699",
- "modified_by": "faris@erpnext.com",
+ "modified": "2020-12-14 11:38:49.132061",
+ "modified_by": "Administrator",
  "module": "Printing",
  "name": "Print Format",
  "owner": "Administrator",
