@@ -62,6 +62,9 @@ class BlogPost(WebsiteGenerator):
 
 		context.content = get_html_content_based_on_type(self, 'content', self.content_type)
 		context.description = self.blog_intro or strip_html_tags(context.content[:140])
+		# TODO: DFP do pull request of this improvement
+		# import textwrap
+		# context.description = self.blog_intro or textwrap.shorten(strip_html_tags(context.content), width=140, placeholder="...")
 
 		context.metatags = {
 			"name": self.title,
