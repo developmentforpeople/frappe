@@ -238,14 +238,10 @@ frappe.ui.form.Form = class FrappeForm {
 					throw "attach error";
 				}
 
-				if(me.attachments.max_reached()) {
-					frappe.msgprint(__("Maximum Attachment Limit for this record reached."));
-					throw "attach error";
-				}
-
 				new frappe.ui.FileUploader({
 					doctype: me.doctype,
 					docname: me.docname,
+					frm: me,
 					files: dataTransfer.files,
 					folder: 'Home/Attachments',
 					on_success(file_doc) {
@@ -1285,19 +1281,16 @@ frappe.ui.form.Form = class FrappeForm {
 	}
 
 	set_read_only() {
-		var perm = [];
-		var docperms = frappe.perm.get_perm(this.doc.doctype);
-		for (var i=0, l=docperms.length; i<l; i++) {
-			var p = docperms[i];
-			perm[p.permlevel || 0] = {
+		const docperms = frappe.perm.get_perm(this.doc.doctype);
+		this.perm = docperms.map(p => {
+			return {
 				read: p.read,
 				cancel: p.cancel,
 				share: p.share,
 				print: p.print,
 				email: p.email
 			};
-		}
-		this.perm = perm;
+		});
 	}
 
 	trigger(event, doctype, docname) {
