@@ -555,6 +555,7 @@ class BaseDocument(object):
 				label = _(self.meta.get_label(df.fieldname))
 				comma_options = '", "'.join(_(each) for each in options)
 
+				value = _("value") # DFP: XSS removed value from js message
 				frappe.throw(_('{0} {1} cannot be "{2}". It should be one of "{3}"').format(prefix, label,
 					value, comma_options))
 
@@ -619,6 +620,7 @@ class BaseDocument(object):
 		else:
 			reference = "{0} {1}".format(_(self.doctype), self.name)
 
+		value = _("value") # DFP: XSS removed value from js message
 		frappe.throw(_("{0}: '{1}' ({3}) will get truncated, as max characters allowed is {2}")\
 			.format(reference, _(df.label), max_length, value), frappe.CharacterLengthExceededError, title=_('Value too big'))
 
